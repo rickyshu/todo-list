@@ -1,25 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import GlobalStyles from "./GlobalStyle";
+import { ThemeProvider } from "styled-components";
+import { darkTheme, lightTheme } from "./theme/themeSelect";
+import { useState } from "react";
+import { Theme } from "./constants/constant";
+import Header from "./pages/Header";
+import TodoLists from "./components/Todolists";
 function App() {
+  const [themeMode, setThemeMode] = useState<string>(Theme.LightTheme);
+  const theme = themeMode === Theme.LightTheme ? lightTheme : darkTheme;
+  //Router를 만들어서 진행해라!
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        <Header themeMode={themeMode} setThemeMode={setThemeMode} />
+        <TodoLists />
+      </ThemeProvider>
+    </>
   );
 }
 
