@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import AddTodo from "./AddTodoButton";
 import TodoInput from "./TodoInput";
-import DateInfo from "./DataInfo";
+import DateInfo from "./DateInfo";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch } from "react-redux";
