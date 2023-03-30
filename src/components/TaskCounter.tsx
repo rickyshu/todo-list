@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { RootState, TodoActions } from "../store";
+import { RootState } from "../store";
 import { useSelector } from "react-redux";
 const WetherInfo = () => {
   const todoLists = useSelector((state: RootState) => state);
@@ -8,9 +8,9 @@ const WetherInfo = () => {
   });
   return (
     <RemainingTasks>
-      <div>
-        Tasks Remain
-        <div className="tasksCounter">{TasksLeft.length}</div>
+      <div className="title">Tasks Remain</div>
+      <div className="tasksCounter">
+        {TasksLeft.length === 0 ? "No Tasks" : TasksLeft.length}
       </div>
     </RemainingTasks>
   );
@@ -18,10 +18,19 @@ const WetherInfo = () => {
 
 const RemainingTasks = styled.section`
   position: absolute;
-  right: 10%;
-  top: 10%;
-  width: 23%;
+  right: 5%;
+  top: 6%;
+  width: 40%;
   height: 10%;
-  border: 2px solid green;
+  .title {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 800;
+  }
+  .tasksCounter {
+    margin-top: 2rem;
+    font-size: 4.5rem;
+    text-align: center;
+  }
 `;
 export default WetherInfo;

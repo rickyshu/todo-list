@@ -3,6 +3,7 @@ import AddTodo from "../components/AddTodoButton";
 import TodoInput from "../components/TodoInput";
 import DateInfo from "../components/DateInfo";
 import RemainingTasks from "../components/TaskCounter";
+import Nav from "./Nav";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch } from "react-redux";
@@ -29,16 +30,19 @@ const TodoLists = () => {
     }
   };
   return (
-    <Todos>
-      <RemainingTasks />
-      <DateInfo />
-      <Form onSubmit={submitHandler}>
-        {/* 여기에 이제 input이랑 기타 사항들을 받는다! */}
-        <TodoInput inputValue={inputValue} setInputValue={setInputValue} />
-        <Todo />
-        <AddTodo />
-      </Form>
-    </Todos>
+    <>
+      <Nav />
+      <Todos>
+        <RemainingTasks />
+        <DateInfo />
+        <Form onSubmit={submitHandler}>
+          {/* 여기에 이제 input이랑 기타 사항들을 받는다! */}
+          <TodoInput inputValue={inputValue} setInputValue={setInputValue} />
+          <Todo />
+          <AddTodo />
+        </Form>
+      </Todos>
+    </>
   );
 };
 

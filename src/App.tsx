@@ -15,7 +15,6 @@ function App() {
       <ThemeProvider theme={theme}>
         <GlobalStyles />
         <Header themeMode={themeMode} setThemeMode={setThemeMode} />
-        <Nav />
         <TodoLists />
       </ThemeProvider>
     </>
