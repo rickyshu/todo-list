@@ -2,17 +2,15 @@ import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { RootState, TodoActions } from "../store";
 import { BsFillTrashFill } from "react-icons/bs";
-import { useState } from "react";
 const Todo = () => {
-  const [isChecked, setIsChecked] = useState(false);
   const dispatch = useDispatch();
   const todoLists = useSelector((state: RootState) => state);
   const deleteEventHandler = (id: number) => {
     dispatch(TodoActions.deleteTodo(id));
   };
   const checkBoxEventHandler = (id: number) => {
-    //체크되면 text-decoration:line-through로 변경해야 하는데
-    //조금 더 고민이 필요할듯!
+    dispatch(TodoActions.checkTodo(id));
+    console.log(todoLists);
   };
   return (
     <ShowTodo>
@@ -23,9 +21,8 @@ const Todo = () => {
                 <ul>
                   <li>{todos.input}</li>
                   <CheckBox
-                    type={"checkbox"}
-                    checked={isChecked}
-                    onChange={() => todos.id}
+                    type="checkbox"
+                    onChange={() => checkBoxEventHandler(todos.id)}
                   />
                   <TrashIcons onClick={() => deleteEventHandler(todos.id)} />
                 </ul>

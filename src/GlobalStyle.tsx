@@ -111,7 +111,7 @@ const GlobalStyles = createGlobalStyle<{ theme: DefaultTheme }>`
         padding-top: 50px;
     }
     #root{
-        margin-top:20rem
+        margin-top:20rem;
     }
 `;
 

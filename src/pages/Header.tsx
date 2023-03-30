@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { Theme } from "../constants/constant";
 import { ThemeButton } from "../components/ThemeButton";
 import { BsFillSunFill } from "react-icons/bs";

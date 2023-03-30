@@ -1,7 +1,6 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
 import { ActionType } from "../constants/constant";
 import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
-import { stat } from "fs";
 //Toolkit을 사용하는 이유: 입력한 값을 받고 그것을 상태 변경하기 위해서
 //내부에 각 todos의 객체를 받아서 처리를 한다.
 interface Todo {
@@ -24,6 +23,9 @@ const TodoInputSlice = createSlice({
     },
     checkTodo(state, action) {
       const todo = state.find((todo) => todo.id === action.payload);
+      if (todo !== undefined) {
+        todo.accompolished = !todo.accompolished;
+      }
     },
     deleteTodo(state, action) {
       const indexToDelete = state.findIndex(
