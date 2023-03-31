@@ -45,9 +45,7 @@ const Header = ({ themeMode, setThemeMode }: setThemeProps) => {
     </HeaderInfo>
   );
 };
-// const flexCenter = css`
-//   display: flex;
-// `;
+
 const HeaderInfo = styled.header`
   position: absolute;
   top: 0;

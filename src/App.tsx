@@ -1,7 +1,6 @@
 import GlobalStyles from "./GlobalStyle";
 import Header from "./pages/Header";
 import TodoLists from "./pages/Todolists";
-import Nav from "./pages/Nav";
 import { ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "./theme/themeSelect";
 import { useState } from "react";
