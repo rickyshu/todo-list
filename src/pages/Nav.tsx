@@ -23,6 +23,7 @@ const NavBar = styled.nav`
   width: 50rem;
   height: 15rem;
   border-radius: 4rem;
+  margin-top: 5rem;
   border: 1px solid red;
 `;
 const CalenderIcon = styled(SlCalender)`

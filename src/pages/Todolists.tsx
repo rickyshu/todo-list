@@ -3,6 +3,7 @@ import AddTodo from "../components/AddTodoButton";
 import TodoInput from "../components/TodoInput";
 import DateInfo from "../components/DateInfo";
 import RemainingTasks from "../components/TaskCounter";
+import CurrentTime from "../components/CurrentTime";
 import Nav from "./Nav";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
@@ -32,6 +33,7 @@ const TodoLists = () => {
   return (
     <>
       <Nav />
+      <CurrentTime />
       <Todos>
         <RemainingTasks />
         <DateInfo />
@@ -50,7 +52,7 @@ const Todos = styled.div`
   border: 1px solid red;
   position: relative;
   box-sizing: border-box;
-  margin-top: 15rem;
+  margin-top: 2rem;
   width: 50rem;
   height: 100%;
   border-radius: 2rem;
