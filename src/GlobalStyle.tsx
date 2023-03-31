@@ -1,7 +1,6 @@
-import { createGlobalStyle, DefaultTheme } from "styled-components";
-import reset from "styled-reset"; // style-reset 패키지
-
-const GlobalStyles = createGlobalStyle<{ theme: DefaultTheme }>` 
+import { createGlobalStyle } from "styled-components";
+import reset from "styled-reset";
+const GlobalStyles = createGlobalStyle` 
     ${reset}
     :root {
   --bluish-gray-10: #f5f7f9;
@@ -105,7 +104,6 @@ const GlobalStyles = createGlobalStyle<{ theme: DefaultTheme }>`
         justify-content:center; 
         align-items:center;      
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        font-size: 16px;
         background-color: ${(props) => props.theme.style.backgroundColor};
         color: ${(props) => props.theme.style.color};
         padding-top: 50px;
