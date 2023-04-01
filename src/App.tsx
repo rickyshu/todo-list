@@ -1,6 +1,7 @@
 import GlobalStyles from "./GlobalStyle";
 import Header from "./pages/Header";
-import TodoLists from "./pages/Todolists";
+import TodoLists from "./routes/Todolists";
+import { Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "./theme/themeSelect";
 import { useState } from "react";
@@ -14,7 +15,9 @@ function App() {
       <ThemeProvider theme={theme}>
         <GlobalStyles />
         <Header themeMode={themeMode} setThemeMode={setThemeMode} />
-        <TodoLists />
+        <Routes>
+          <Route path="/" element={<TodoLists />} />
+        </Routes>
       </ThemeProvider>
     </>
   );
