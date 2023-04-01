@@ -4,7 +4,7 @@ import TodoInput from "../components/TodoInput";
 import DateInfo from "../components/DateInfo";
 import RemainingTasks from "../components/TaskCounter";
 import CurrentTime from "../components/CurrentTime";
-import Nav from "./Nav";
+import Nav from "../pages/Nav";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch } from "react-redux";
