@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { Link } from "react-router-dom";
 import { SlCalender } from "react-icons/sl";
 import { SlNotebook } from "react-icons/sl";
 import { BsChatSquareQuote } from "react-icons/bs";
@@ -6,7 +7,9 @@ import { BsChatSquareQuote } from "react-icons/bs";
 const Nav = () => {
   return (
     <NavBar>
-      <CalenderIcon />
+      <Link to={"/calender"}>
+        <CalenderIcon />
+      </Link>
       <Diary />
       <WiseSaying />
     </NavBar>
