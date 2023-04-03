@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import CalenderHeader from "../components/CalenderHeader";
+import CalenderDay from "../components/CalenderDays";
 import { format, addMonths, subMonths } from "date-fns";
 import { useState } from "react";
 const Calender = () => {
@@ -19,8 +20,7 @@ const Calender = () => {
         preMonth={preMonth}
         nextMonth={nextMonth}
       ></CalenderHeader>
-      <div className="header">Header</div>
-      <div className="days">Days</div>
+      <CalenderDay />
       <div className="body">Cells</div>
     </CalenderInfo>
   );

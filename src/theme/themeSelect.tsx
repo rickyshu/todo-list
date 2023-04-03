@@ -10,6 +10,7 @@ declare module "styled-components" {
       color: string;
       TodoBGColor: string;
       AddButtonColor: string;
+      calenderDayColor: string;
     };
   }
 }
@@ -20,6 +21,7 @@ export const lightTheme: DefaultTheme = {
     color: "#343a40",
     TodoBGColor: "#ffcead",
     AddButtonColor: "#47ffb2;",
+    calenderDayColor: "#ffcead",
   },
 };
 
@@ -30,5 +32,6 @@ export const darkTheme: DefaultTheme = {
     color: "#ffffff",
     TodoBGColor: "#667ba3",
     AddButtonColor: "#141414",
+    calenderDayColor: "#667ba3",
   },
 };
