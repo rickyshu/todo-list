@@ -29,7 +29,6 @@ const HeaderRow = styled.section`
   position: relative;
   width: 100%;
   height: 3rem;
-  outline: 1px solid black;
   display: flex;
   .text {
     margin-left: 1rem;
@@ -41,7 +40,6 @@ const HeaderRow = styled.section`
     font-weight: 800;
   }
   .col-start {
-    outline: 1px solid green;
     flex: 5;
   }
   .col-end {
@@ -56,7 +54,8 @@ const commonStyleIcons = css`
   cursor: pointer;
   margin: 0.2rem;
   &:hover {
-    color: red;
+    font-size: 1.8rem;
+    color: ${(prop) => prop.theme.style.CalenderButton};
   }
 `;
 
