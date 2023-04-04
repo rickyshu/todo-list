@@ -10,7 +10,12 @@ declare module "styled-components" {
       color: string;
       TodoBGColor: string;
       AddButtonColor: string;
-      calenderDayColor: string;
+      CalenderOutline: string;
+      CalenderDayColor: string;
+      CalenderCellcolor: string;
+      CalenderButton: string;
+      CalenderHover: string;
+      CalenderToday: string;
     };
   }
 }
@@ -21,7 +26,12 @@ export const lightTheme: DefaultTheme = {
     color: "#343a40",
     TodoBGColor: "#ffcead",
     AddButtonColor: "#47ffb2;",
-    calenderDayColor: "#ffcead",
+    CalenderOutline: "#ff9b85;",
+    CalenderDayColor: "#ffcead",
+    CalenderCellcolor: "#a3a3a3;",
+    CalenderButton: "#141414;",
+    CalenderHover: "#ffcead",
+    CalenderToday: "#ff9b85",
   },
 };
 
@@ -32,6 +42,11 @@ export const darkTheme: DefaultTheme = {
     color: "#ffffff",
     TodoBGColor: "#667ba3",
     AddButtonColor: "#141414",
-    calenderDayColor: "#667ba3",
+    CalenderOutline: "#173ea1;",
+    CalenderDayColor: "#667ba3",
+    CalenderCellcolor: "#a3a3a3",
+    CalenderButton: "#ccd3e0;",
+    CalenderHover: "#5e85e8",
+    CalenderToday: "#0d2259;",
   },
 };
