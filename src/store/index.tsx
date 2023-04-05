@@ -35,6 +35,11 @@ const TodoInputSlice = createSlice({
         state.splice(indexToDelete, 1);
       }
     },
+    resetTodo(state) {
+      while (state.length > 0) {
+        state.pop();
+      }
+    },
   },
 });
 //밑과 같이 하면 액션 객체가 생성됨(우리가 굳이 따로 만들 필요가 없음!);

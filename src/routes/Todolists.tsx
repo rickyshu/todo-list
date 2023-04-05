@@ -4,6 +4,7 @@ import TodoInput from "../components/TodoInput";
 import DateInfo from "../components/DateInfo";
 import RemainingTasks from "../components/TaskCounter";
 import CurrentTime from "../components/CurrentTime";
+import Comfirm from "../components/Comfirm";
 import Nav from "../pages/Nav";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
@@ -43,6 +44,7 @@ const TodoLists = () => {
           <Todo />
           <AddTodo />
         </Form>
+        <Comfirm />
       </Todos>
     </>
   );
