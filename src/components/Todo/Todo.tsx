@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
-import { RootState, TodoActions } from "../store";
+import { RootState, TodoActions } from "../../store";
 import { BsFillTrashFill } from "react-icons/bs";
 const Todo = () => {
   const dispatch = useDispatch();

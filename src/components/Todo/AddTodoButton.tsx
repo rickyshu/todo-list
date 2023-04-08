@@ -9,6 +9,9 @@ const AddButton = styled.button`
   border: none;
   background-color: ${(props) => props.theme.style.AddButtonColor};
   box-shadow: -8px 5px 19px -2px rgba(0, 0, 0, 0.36);
+  &:hover {
+    
+  }
 `;
 const AddIcons = styled(FaPlus)`
   font-size: 3.1rem;

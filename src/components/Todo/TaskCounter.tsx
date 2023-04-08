@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { RootState } from "../store";
+import { RootState } from "../../store";
 import { useSelector } from "react-redux";
 const WetherInfo = () => {
   const todoLists = useSelector((state: RootState) => state);

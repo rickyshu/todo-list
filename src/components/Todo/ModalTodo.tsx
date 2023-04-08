@@ -1,9 +1,10 @@
 import styled, { css } from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, TodoActions } from "../store";
+import { RootState, TodoActions } from "../../store";
 import { useEffect, useState } from "react";
-import { addDoc, collection } from "firebase/firestore/lite";
-import { db } from "../fbase";
+import { format } from "date-fns";
+import { doc, setDoc } from "firebase/firestore/lite";
+import { db } from "../../fbase";
 
 interface ModalProps {
   isOpen: boolean;
@@ -17,32 +18,44 @@ const ModalTodo = ({ isOpen, onClose, children }: ModalProps) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    //firebase에 정보를 저장하기!
-    //처음 호출할 때 안 부르도록 하는 것은 어떻게 해결하나?
-    console.log(todoLists);
-    addDoc(collection(db, "todolist-01"), {
-      ...todoLists,
-    });
-
-    dispatch(TodoActions.resetTodo());
-  }, [comfirm, todoLists, dispatch]);
+    const saveDateToFirebase = async () => {
+      if (todoLists.length !== 0) {
+        await setDoc(
+          doc(db, "todolist-01", `${format(new Date(), "yyyyMMdd")}`),
+          {
+            ...todoLists,
+          }
+        );
+      }
+      dispatch(TodoActions.resetTodo());
+    };
+    saveDateToFirebase();
+  }, [comfirm, dispatch]);
 
   const clickEventHandler = () => {
+    console.log(format(new Date(), "yyyyMMdd"));
+    onClose();
     setComfirm((preval) => !preval);
   };
 
-  if (!isOpen) {
-    return null;
-  }
-
   return (
-    <ModalWrapper onClick={onClose}>
-      <ModalContent onClick={(e) => e.stopPropagation()}>
-        {children}
-        <YesButton onClick={clickEventHandler}>YES</YesButton>
-        <NoButton>No</NoButton>
-      </ModalContent>
-    </ModalWrapper>
+    <>
+      {isOpen && (
+        <ModalWrapper onClick={onClose}>
+          <ModalContent onClick={(e) => e.stopPropagation()}>
+            {children}
+            <YesButton
+              onClick={(e) => {
+                clickEventHandler();
+              }}
+            >
+              YES
+            </YesButton>
+            <NoButton onClick={onClose}>No</NoButton>
+          </ModalContent>
+        </ModalWrapper>
+      )}
+    </>
   );
 };
 
