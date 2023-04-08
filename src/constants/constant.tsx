@@ -6,3 +6,7 @@ export const Theme = {
 export const ActionType = {
   Todo: "Todo",
 };
+
+export const FirbaseID = {
+  Id: "todolist-01",
+};
