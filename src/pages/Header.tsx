@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Theme } from "../constants/constant";
-import { ThemeButton } from "../components/ThemeButton";
+import { ThemeButton } from "../components/Todo/ThemeButton";
 import { BsFillSunFill } from "react-icons/bs";
 import { MdDarkMode } from "react-icons/md";
 interface setThemeProps {

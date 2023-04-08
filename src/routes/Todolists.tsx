@@ -1,16 +1,16 @@
 import styled from "styled-components";
-import AddTodo from "../components/AddTodoButton";
-import TodoInput from "../components/TodoInput";
-import DateInfo from "../components/DateInfo";
-import RemainingTasks from "../components/TaskCounter";
-import CurrentTime from "../components/CurrentTime";
-import Comfirm from "../components/Comfirm";
+import AddTodo from "../components/Todo/AddTodoButton";
+import TodoInput from "../components/Todo/TodoInput";
+import DateInfo from "../components/Todo/DateInfo";
+import RemainingTasks from "../components/Todo/TaskCounter";
+import CurrentTime from "../components/Todo/CurrentTime";
+import Comfirm from "../components/Todo/Comfirm";
 import Nav from "../pages/Nav";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch } from "react-redux";
 import { TodoActions } from "../store";
-import Todo from "../components/Todo";
+import Todo from "../components/Todo/Todo";
 interface Task {
   id: string;
   input: string;
