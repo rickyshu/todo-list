@@ -3,7 +3,9 @@ import styled from "styled-components";
 const ModalCalender = () => {
   return (
     <ModalWrapper>
-      <ModalContent></ModalContent>
+      <ModalContent>
+        
+      </ModalContent>
     </ModalWrapper>
   );
 };

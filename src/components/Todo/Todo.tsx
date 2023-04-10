@@ -1,15 +1,16 @@
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
-import { RootState, TodoActions } from "../../store";
+import { RootState } from "../../store";
+import { deleteTodo, checkTodo } from "../../features/todo/TodoInputSlice";
 import { BsFillTrashFill } from "react-icons/bs";
 const Todo = () => {
   const dispatch = useDispatch();
   const todoLists = useSelector((state: RootState) => state);
   const deleteEventHandler = (id: number) => {
-    dispatch(TodoActions.deleteTodo(id));
+    dispatch(deleteTodo(id));
   };
   const checkBoxEventHandler = (id: number) => {
-    dispatch(TodoActions.checkTodo(id));
+    dispatch(checkTodo(id));
     console.log(todoLists);
   };
   return (

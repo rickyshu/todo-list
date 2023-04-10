@@ -1,11 +1,11 @@
 import styled, { css } from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, TodoActions } from "../../store";
+import { RootState } from "../../store";
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
 import { doc, setDoc } from "firebase/firestore/lite";
 import { db } from "../../fbase";
-
+import { resetTodo } from "../../features/todo/TodoInputSlice";
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -27,7 +27,7 @@ const ModalTodo = ({ isOpen, onClose, children }: ModalProps) => {
           }
         );
       }
-      dispatch(TodoActions.resetTodo());
+      dispatch(resetTodo());
     };
     saveDateToFirebase();
   }, [comfirm, dispatch]);
