@@ -1,11 +1,7 @@
 import styled from "styled-components";
 import ModalTodo from "./ModalTodo";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState, TodoActions } from "../../store";
-import { useEffect, useState } from "react";
-import { addDoc, collection } from "firebase/firestore/lite";
-import { db } from "../../fbase";
-import { connect } from "http2";
+import { useState } from "react";
+
 //여기에서 ensure 버튼을 클릭하게 되면, 정보들이 다 firebase에 추가된다.
 //그러면 새로운 firebase의 정보를 기반으로
 const Comfirm = () => {
