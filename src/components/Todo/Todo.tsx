@@ -1,11 +1,10 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useAppSelector, useAppDispatch } from "../../hooks/reduxHooks";
 import styled from "styled-components";
-import { RootState } from "../../store";
 import { deleteTodo, checkTodo } from "../../features/todo/TodoInputSlice";
 import { BsFillTrashFill } from "react-icons/bs";
 const Todo = () => {
-  const dispatch = useDispatch();
-  const todoLists = useSelector((state: RootState) => state);
+  const dispatch = useAppDispatch();
+  const todoLists = useAppSelector((state) => state);
   const deleteEventHandler = (id: number) => {
     dispatch(deleteTodo(id));
   };

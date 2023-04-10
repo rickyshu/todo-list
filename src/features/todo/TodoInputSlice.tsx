@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
 import { ActionType } from "../../constants/constant";
 interface Todo {
   id: number;
@@ -11,19 +12,17 @@ const TodoInputSlice = createSlice({
   name: ActionType.Todo,
   initialState,
   reducers: {
-    addTodo(state, action) {
-      state.push(action.payload);
+    addTodo(state, { payload }: PayloadAction<Todo>) {
+      state.push(payload);
     },
-    checkTodo(state, action) {
-      const todo = state.find((todo) => todo.id === action.payload);
+    checkTodo(state, { payload }: PayloadAction<number>) {
+      const todo = state.find((todo) => todo.id === payload);
       if (todo !== undefined) {
         todo.accompolished = !todo.accompolished;
       }
     },
-    deleteTodo(state, action) {
-      const indexToDelete = state.findIndex(
-        (todo) => todo.id === action.payload
-      );
+    deleteTodo(state, { payload }: PayloadAction<number>) {
+      const indexToDelete = state.findIndex((todo) => todo.id === payload);
       if (indexToDelete !== -1) {
         state.splice(indexToDelete, 1);
       }

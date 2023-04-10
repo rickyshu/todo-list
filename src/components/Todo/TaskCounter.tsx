@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { RootState } from "../../store";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../../hooks/reduxHooks";
+
 const WetherInfo = () => {
-  const todoLists = useSelector((state: RootState) => state);
+  const todoLists = useAppSelector((state) => state);
   const TasksLeft = todoLists.filter((todo) => {
     return !todo.accompolished;
   });

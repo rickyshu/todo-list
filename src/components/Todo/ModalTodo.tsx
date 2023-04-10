@@ -1,6 +1,5 @@
 import styled, { css } from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../store";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
 import { doc, setDoc } from "firebase/firestore/lite";
@@ -14,8 +13,8 @@ interface ModalProps {
 
 const ModalTodo = ({ isOpen, onClose, children }: ModalProps) => {
   const [comfirm, setComfirm] = useState<boolean>(false);
-  const todoLists = useSelector((state: RootState) => state);
-  const dispatch = useDispatch();
+  const todoLists = useAppSelector((state) => state);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const saveDateToFirebase = async () => {
