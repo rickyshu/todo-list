@@ -9,7 +9,7 @@ import Nav from "../pages/Nav";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch } from "react-redux";
-import { TodoActions } from "../store";
+import { addTodo } from "../features/todo/TodoInputSlice";
 import Todo from "../components/Todo/Todo";
 interface Task {
   id: string;
@@ -27,7 +27,7 @@ const TodoLists = () => {
         input: inputValue,
         accompolished: false,
       };
-      dispatch(TodoActions.addTodo(todo)); //{type}
+      dispatch(addTodo(todo));
       setInputValue("");
     }
   };

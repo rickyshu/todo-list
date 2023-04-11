@@ -1,27 +1,27 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { ActionType } from "../../constants/constant";
-interface Todo {
-  id: number;
+interface Task {
+  id: string;
   input: string;
   accompolished: boolean;
 }
 
-const initialState: Todo[] = [];
+const initialState: Task[] = [];
 const TodoInputSlice = createSlice({
   name: ActionType.Todo,
   initialState,
   reducers: {
-    addTodo(state, { payload }: PayloadAction<Todo>) {
+    addTodo(state, { payload }: PayloadAction<Task>) {
       state.push(payload);
     },
-    checkTodo(state, { payload }: PayloadAction<number>) {
+    checkTodo(state, { payload }: PayloadAction<string>) {
       const todo = state.find((todo) => todo.id === payload);
       if (todo !== undefined) {
         todo.accompolished = !todo.accompolished;
       }
     },
-    deleteTodo(state, { payload }: PayloadAction<number>) {
+    deleteTodo(state, { payload }: PayloadAction<string>) {
       const indexToDelete = state.findIndex((todo) => todo.id === payload);
       if (indexToDelete !== -1) {
         state.splice(indexToDelete, 1);

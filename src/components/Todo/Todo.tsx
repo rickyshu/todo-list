@@ -5,10 +5,10 @@ import { BsFillTrashFill } from "react-icons/bs";
 const Todo = () => {
   const dispatch = useAppDispatch();
   const todoLists = useAppSelector((state) => state);
-  const deleteEventHandler = (id: number) => {
+  const deleteEventHandler = (id: string) => {
     dispatch(deleteTodo(id));
   };
-  const checkBoxEventHandler = (id: number) => {
+  const checkBoxEventHandler = (id: string) => {
     dispatch(checkTodo(id));
     console.log(todoLists);
   };
