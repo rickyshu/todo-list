@@ -11,13 +11,13 @@ interface props {
 const CalenderHeader = ({ currentMonth, preMonth, nextMonth }: props) => {
   return (
     <HeaderRow>
-      <div className="col col-start">
+      <div className="col-start">
         <span className="text">
           <span className="month">{format(currentMonth, "M")}월</span>
           {format(currentMonth, "yyyy")}
         </span>
       </div>
-      <div className="col col-end">
+      <div className="col-end">
         <ArrowRight className="arrow-right" onClick={preMonth} />
         <ArrowLeft className="arrow-left" onClick={nextMonth} />
       </div>
