@@ -6,12 +6,12 @@ import { useEffect, useState } from "react";
 import { FirbaseID } from "../../constants/constant";
 import { FaRegCircle } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
+import ModalCalender from "./ModalCalender";
 import styled, { css } from "styled-components";
 
 interface Props {
   currentMonth: Date;
   selectedDate: Date;
-  onDateClick: (day: Date) => void;
 }
 
 interface FireBaseDate {
@@ -22,14 +22,18 @@ interface CheckingDateParams {
   currentDay: Date;
 }
 
-const CalenderCells = ({ currentMonth, selectedDate, onDateClick }: Props) => {
+const CalenderCells = ({ currentMonth, selectedDate }: Props) => {
   const monthStart = startOfMonth(currentMonth);
   const monthEnd = endOfMonth(monthStart);
   const startDate = startOfWeek(monthStart);
   const endDate = endOfWeek(monthEnd);
+  const [isOpen, setIsOpen] = useState(false);
   //redux-toolkit thunk로 받아오는 것으로 변경할 필요 존재!
   const [fireBaseData, setFireBaseDate] = useState<FireBaseDate>({});
-
+  const toggleModal = () => {
+    console.log("outcome");
+    setIsOpen(!isOpen);
+  };
   //해당 날짜에 관련된 Todo의 존재 여부를 확인하는 함수
   const containData = ({
     currentMonth,
@@ -108,7 +112,7 @@ const CalenderCells = ({ currentMonth, selectedDate, onDateClick }: Props) => {
               : format(currentMonth, "M") !== format(day, "M")
               ? "not-valid"
               : "valid"
-          } ${format(new Date(), "yyyy/MM/dd")}`}
+          }`}
           key={day.toString()}
         >
           <span
@@ -126,9 +130,9 @@ const CalenderCells = ({ currentMonth, selectedDate, onDateClick }: Props) => {
                 currentMonth,
                 currentDay: day,
               }) ? (
-              <Complete />
+              <Complete onClick={toggleModal} />
             ) : (
-              <NotComplete />
+              <NotComplete onClick={toggleModal} />
             )}
           </span>
         </div>
@@ -142,12 +146,17 @@ const CalenderCells = ({ currentMonth, selectedDate, onDateClick }: Props) => {
     );
     days = [];
   }
-  return <Cells className="body">{rows}</Cells>;
+  return (
+    <>
+      <Cells className="body">{rows}</Cells>
+      <ModalCalender isOpen={isOpen} onClose={toggleModal}>
+        <p>hello</p>
+      </ModalCalender>
+    </>
+  );
 };
 
 const Cells = styled.section`
-  //위는 고정되고 밑만 변경되도록 css를 변경해야 한다.
-  //이거 오늘 마무리하고 TS 좀 작성하고 내일 과목을 준비하자.
   .row {
     width: 100%;
     height: 8rem;

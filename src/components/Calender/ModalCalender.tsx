@@ -1,12 +1,22 @@
 import styled from "styled-components";
 
-const ModalCalender = () => {
+interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  children: React.ReactNode;
+}
+
+const ModalCalender = ({ isOpen, onClose, children }: ModalProps) => {
   return (
-    <ModalWrapper>
-      <ModalContent>
-        
-      </ModalContent>
-    </ModalWrapper>
+    <>
+      {isOpen && (
+        <ModalWrapper onClick={onClose}>
+          <ModalContent onClick={(e) => e.stopPropagation()}>
+            {children}
+          </ModalContent>
+        </ModalWrapper>
+      )}
+    </>
   );
 };
 

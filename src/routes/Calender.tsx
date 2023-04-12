@@ -6,16 +6,12 @@ import { addMonths, subMonths } from "date-fns";
 import { useState } from "react";
 const Calender = () => {
   const [currentMonth, setCurrentMonth] = useState<Date>(new Date());
-  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+  const selectedDate: Date = new Date();
   const preMonth = () => {
     setCurrentMonth(subMonths(currentMonth, 1));
   };
   const nextMonth = () => {
     setCurrentMonth(addMonths(currentMonth, 1));
-  };
-  const onDateClick = (day: Date) => {
-    console.log(day, "onDateClick");
-    setSelectedDate(day);
   };
 
   return (
@@ -26,11 +22,7 @@ const Calender = () => {
         nextMonth={nextMonth}
       ></CalenderHeader>
       <CalenderDay />
-      <CalenderCells
-        currentMonth={currentMonth}
-        selectedDate={selectedDate}
-        onDateClick={onDateClick}
-      />
+      <CalenderCells currentMonth={currentMonth} selectedDate={selectedDate} />
     </CalenderInfo>
   );
 };
