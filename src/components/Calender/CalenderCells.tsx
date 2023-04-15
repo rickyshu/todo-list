@@ -14,6 +14,14 @@ interface Props {
   selectedDate: Date;
 }
 
+interface Task {
+  input: string;
+  accomplished: boolean;
+  id: string;
+}
+
+type FireBaseDataArray = Task[];
+
 interface FireBaseDate {
   [key: string]: any; //추가로 확인해야 함
 }
@@ -28,30 +36,34 @@ const CalenderCells = ({ currentMonth, selectedDate }: Props) => {
   const startDate = startOfWeek(monthStart);
   const endDate = endOfWeek(monthEnd);
   const [isOpen, setIsOpen] = useState(false);
+  const [modalData, setModalData] = useState<FireBaseDataArray>([]);
   //redux-toolkit thunk로 받아오는 것으로 변경할 필요 존재!
   const [fireBaseData, setFireBaseDate] = useState<FireBaseDate>({});
+  //특정 날짜랑
   const toggleModal = () => {
-    console.log("outcome");
     setIsOpen(!isOpen);
   };
+
+  //날짜에 해당하는 아이콘 클릭시 해당 날짜 데이터 저장하기
+  const handleDays = (curDay: string, curMonth: Date) => {
+    const month = format(curMonth, "MM");
+    const year = format(curMonth, "yyyy");
+    let propKey = `${year}${month}${curDay}`;
+    console.log(propKey);
+    console.log(curDay);
+    if (propKey in fireBaseData) {
+      setModalData(Object.values(fireBaseData[propKey]));
+    }
+  };
+
   //해당 날짜에 관련된 Todo의 존재 여부를 확인하는 함수
-  const containData = ({
-    currentMonth,
-    currentDay,
-  }: CheckingDateParams): boolean => {
+  const containData = ({ currentMonth, currentDay }: CheckingDateParams): boolean => {
     const month = format(currentMonth, "MM");
     const day = format(currentDay, "dd");
     const year = format(currentMonth, "yyyy");
     if (Object.keys(fireBaseData).includes(`${year}${month}${day}`)) {
-      const checkedDate = parse(
-        `${year}${month}${day}`,
-        "yyyyMMdd",
-        new Date()
-      );
-      return (
-        isSameMonth(checkedDate, currentMonth) &&
-        isSameDay(checkedDate, currentDay)
-      );
+      const checkedDate = parse(`${year}${month}${day}`, "yyyyMMdd", new Date());
+      return isSameMonth(checkedDate, currentMonth) && isSameDay(checkedDate, currentDay);
     }
     return false;
   };
@@ -66,10 +78,7 @@ const CalenderCells = ({ currentMonth, selectedDate }: Props) => {
   }, []);
 
   //Todo 전체 성공 여부를 검증하는 함수
-  const accomplisedTheTasks = ({
-    currentMonth,
-    currentDay,
-  }: CheckingDateParams) => {
+  const accomplisedTheTasks = ({ currentMonth, currentDay }: CheckingDateParams) => {
     const month = format(currentMonth, "MM");
     const day = format(currentDay, "dd");
     const year = format(currentMonth, "yyyy");
@@ -86,6 +95,8 @@ const CalenderCells = ({ currentMonth, selectedDate }: Props) => {
     }
     return true;
   };
+
+  //firebase 데이터 호출(따로 hook을 만들 것)
   const getDateFromFireBase = async () => {
     const docRef = collection(db, FirbaseID.Id);
     const docSnap = await getDocs(docRef);
@@ -98,30 +109,14 @@ const CalenderCells = ({ currentMonth, selectedDate }: Props) => {
     }
   };
 
+  //달력 생성
   while (day <= endDate) {
     for (let i = 0; i < 7; i++) {
       formattedDate = format(day, "d");
-
+      let fireBaseDay = format(day, "dd");
       days.push(
-        <div
-          className={`col cell ${
-            !isSameMonth(day, monthStart)
-              ? "disabled"
-              : isSameDay(day, selectedDate)
-              ? "selected"
-              : format(currentMonth, "M") !== format(day, "M")
-              ? "not-valid"
-              : "valid"
-          }`}
-          key={day.toString()}
-        >
-          <span
-            className={
-              format(currentMonth, "M") !== format(day, "M")
-                ? "text not-valid"
-                : ""
-            }
-          >
+        <div className={`col cell ${isSameDay(day, selectedDate) ? "selected" : format(currentMonth, "M") !== format(day, "M") ? "not-valid" : "valid"}`} key={day.toString()}>
+          <span className={format(currentMonth, "M") !== format(day, "M") ? "not-valid" : ""} onClick={toggleModal}>
             {formattedDate}
             {!containData({
               currentMonth,
@@ -130,9 +125,10 @@ const CalenderCells = ({ currentMonth, selectedDate }: Props) => {
                 currentMonth,
                 currentDay: day,
               }) ? (
-              <Complete onClick={toggleModal} />
+              //왜 한 숫자만 나오는지 이해가 안된다.
+              <Complete className={format(day, "dd")} onClick={() => handleDays(fireBaseDay, currentMonth)} />
             ) : (
-              <NotComplete onClick={toggleModal} />
+              <NotComplete onClick={() => handleDays(fireBaseDay, currentMonth)} />
             )}
           </span>
         </div>
@@ -149,9 +145,7 @@ const CalenderCells = ({ currentMonth, selectedDate }: Props) => {
   return (
     <>
       <Cells className="body">{rows}</Cells>
-      <ModalCalender isOpen={isOpen} onClose={toggleModal}>
-        <p>hello</p>
-      </ModalCalender>
+      <ModalCalender isOpen={isOpen} onClose={toggleModal} modalData={modalData}></ModalCalender>
     </>
   );
 };

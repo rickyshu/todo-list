@@ -1,18 +1,35 @@
 import styled from "styled-components";
 
+interface Task {
+  input: string;
+  accomplished: boolean;
+  id: string;
+}
+type FireBaseDataArray = Task[];
+
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
-  children: React.ReactNode;
+  modalData: FireBaseDataArray;
 }
 
-const ModalCalender = ({ isOpen, onClose, children }: ModalProps) => {
+const ModalCalender = ({ isOpen, onClose, modalData }: ModalProps) => {
   return (
     <>
       {isOpen && (
         <ModalWrapper onClick={onClose}>
           <ModalContent onClick={(e) => e.stopPropagation()}>
-            {children}
+            {
+              <ul>
+                {modalData.map((el) => {
+                  return (
+                    <li>
+                      {el.input} {el.accomplished ? "o" : "x"}
+                    </li>
+                  );
+                })}
+              </ul>
+            }
           </ModalContent>
         </ModalWrapper>
       )}
