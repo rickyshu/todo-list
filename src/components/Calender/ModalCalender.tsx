@@ -1,10 +1,13 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import { FaRegCircle } from "react-icons/fa";
+import { ImCross } from "react-icons/im";
 
 interface Task {
   input: string;
-  accomplished: boolean;
+  accompolished: boolean;
   id: string;
 }
+
 type FireBaseDataArray = Task[];
 
 interface ModalProps {
@@ -14,22 +17,21 @@ interface ModalProps {
 }
 
 const ModalCalender = ({ isOpen, onClose, modalData }: ModalProps) => {
+  console.log(modalData);
   return (
     <>
       {isOpen && (
         <ModalWrapper onClick={onClose}>
           <ModalContent onClick={(e) => e.stopPropagation()}>
-            {
-              <ul>
-                {modalData.map((el) => {
-                  return (
-                    <li>
-                      {el.input} {el.accomplished ? "o" : "x"}
-                    </li>
-                  );
-                })}
-              </ul>
-            }
+            <ul className="todo-lists">
+              {modalData.map((el, index) => {
+                return (
+                  <li key={index} className="todo-list">
+                    {el.input} {el.accompolished ? <Success /> : <Fail />}
+                  </li>
+                );
+              })}
+            </ul>
           </ModalContent>
         </ModalWrapper>
       )}
@@ -50,15 +52,45 @@ const ModalWrapper = styled.div`
 `;
 
 const ModalContent = styled.div`
-  position: relative;
   width: 40rem;
   height: 20rem;
-  background-color: white;
+  background-color: ${(props) => props.theme.style.backgroundColor};
+  color: ${(props) => props.theme.style.color};
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 5rem;
-  font-size: 1.4rem;
   font-weight: 800;
+  overflow-y: auto;
+
+  border: 3px solid red;
+  .todo-list {
+    display: flex;
+    width: 100%;
+    margin: 1rem 0;
+    justify-content: space-between;
+  }
+  .todo-lists {
+    box-sizing: border-box;
+    margin: 3rem;
+    padding: 2rem;
+  }
+  ::-webkit-scrollbar {
+    width: 2px;
+  }
 `;
+const CommonIconStyle = css`
+  margin-left: 1rem;
+`;
+
+const Success = styled(FaRegCircle)`
+  ${CommonIconStyle}
+  color:green;
+`;
+
+const Fail = styled(ImCross)`
+  ${CommonIconStyle}
+  color:red;
+`;
+
 export default ModalCalender;

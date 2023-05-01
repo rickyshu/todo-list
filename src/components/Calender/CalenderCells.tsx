@@ -16,7 +16,7 @@ interface Props {
 
 interface Task {
   input: string;
-  accomplished: boolean;
+  accompolished: boolean;
   id: string;
 }
 
@@ -49,8 +49,6 @@ const CalenderCells = ({ currentMonth, selectedDate }: Props) => {
     const month = format(curMonth, "MM");
     const year = format(curMonth, "yyyy");
     let propKey = `${year}${month}${curDay}`;
-    console.log(propKey);
-    console.log(curDay);
     if (propKey in fireBaseData) {
       setModalData(Object.values(fireBaseData[propKey]));
     }
