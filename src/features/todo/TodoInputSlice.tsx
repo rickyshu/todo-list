@@ -35,7 +35,6 @@ const TodoInputSlice = createSlice({
   },
 });
 
-export const { addTodo, checkTodo, deleteTodo, resetTodo } =
-  TodoInputSlice.actions;
+export const { addTodo, checkTodo, deleteTodo, resetTodo } = TodoInputSlice.actions;
 
 export default TodoInputSlice.reducer;

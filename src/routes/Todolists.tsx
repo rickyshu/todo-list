@@ -11,11 +11,13 @@ import { v4 as uuidv4 } from "uuid";
 import { useDispatch } from "react-redux";
 import { addTodo } from "../features/todo/TodoInputSlice";
 import Todo from "../components/Todo/Todo";
+
 interface Task {
   id: string;
   input: string;
   accompolished: boolean;
 }
+
 const TodoLists = () => {
   const [inputValue, setInputValue] = useState("");
   const dispatch = useDispatch();
@@ -39,7 +41,6 @@ const TodoLists = () => {
         <RemainingTasks />
         <DateInfo />
         <Form onSubmit={submitHandler}>
-          {/* 여기에 이제 input이랑 기타 사항들을 받는다! */}
           <TodoInput inputValue={inputValue} setInputValue={setInputValue} />
           <Todo />
           <AddTodo />
@@ -65,6 +66,7 @@ const Form = styled.form`
   position: relative;
   margin: 3rem;
   height: 60rem;
+  flex-grow: 1;
   button {
     //위치상 자신을 기준으로 지정됨!
     position: absolute;

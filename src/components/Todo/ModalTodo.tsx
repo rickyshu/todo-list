@@ -17,14 +17,12 @@ const ModalTodo = ({ isOpen, onClose, children }: ModalProps) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    console.log("hello");
     const saveDateToFirebase = async () => {
       if (todoLists.length !== 0) {
-        await setDoc(
-          doc(db, "todolist-01", `${format(new Date(), "yyyyMMdd")}`),
-          {
-            ...todoLists,
-          }
-        );
+        await setDoc(doc(db, "todolist-01", `${format(new Date(), "yyyyMMdd")}`), {
+          ...todoLists,
+        });
       }
       dispatch(resetTodo());
     };
@@ -32,7 +30,6 @@ const ModalTodo = ({ isOpen, onClose, children }: ModalProps) => {
   }, [comfirm, dispatch]);
 
   const clickEventHandler = () => {
-    console.log(format(new Date(), "yyyyMMdd"));
     onClose();
     setComfirm((preval) => !preval);
   };
@@ -44,7 +41,7 @@ const ModalTodo = ({ isOpen, onClose, children }: ModalProps) => {
           <ModalContent onClick={(e) => e.stopPropagation()}>
             {children}
             <YesButton
-              onClick={(e) => {
+              onClick={() => {
                 clickEventHandler();
               }}
             >

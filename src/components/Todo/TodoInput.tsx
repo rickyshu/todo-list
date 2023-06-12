@@ -8,14 +8,7 @@ const TodoInput = ({ inputValue, setInputValue }: setInputValueProps) => {
   const InputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
-  return (
-    <Input
-      type="text"
-      placeholder="To do"
-      value={inputValue}
-      onChange={InputHandler}
-    />
-  );
+  return <Input type="text" placeholder="To do" value={inputValue} onChange={InputHandler} />;
 };
 
 const Input = styled.input`
@@ -23,7 +16,6 @@ const Input = styled.input`
   width: 40rem;
   border: 0;
   position: relative;
-  /* outline: none; */
   top: 20rem;
   left: 50%;
   border-radius: 2rem;
@@ -31,6 +23,11 @@ const Input = styled.input`
   font-size: 3rem;
   padding-left: 1.5rem;
   background-color: rgb(233, 233, 233);
+
+  overflow-x: auto;
+  ::-webkit-scrollbar {
+    width: 2px;
+  }
 `;
 
 export default TodoInput;

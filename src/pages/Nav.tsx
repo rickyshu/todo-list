@@ -10,8 +10,6 @@ const Nav = () => {
       <Link to={"/calender"}>
         <CalenderIcon />
       </Link>
-      <Diary />
-      <WiseSaying />
     </NavBar>
   );
 };
@@ -27,17 +25,10 @@ const NavBar = styled.nav`
   height: 15rem;
   border-radius: 4rem;
   margin-top: 5rem;
-  border: 1px solid red;
 `;
+
 const CalenderIcon = styled(SlCalender)`
   ${CommonStyleIcons};
 `;
 
-const Diary = styled(SlNotebook)`
-  ${CommonStyleIcons};
-`;
-
-const WiseSaying = styled(BsChatSquareQuote)`
-  ${CommonStyleIcons};
-`;
 export default Nav;
